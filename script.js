@@ -22,12 +22,22 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess);
 
-  // ---- if no guess is made ----
   // ---- subtract a point from the score for incorrect guesses ----
+
+  // ---- if no guess is made ----
   if (!guess) {
     document.querySelector('.message').textContent = 'No number!';
+
+    // -------- Correct number guessed --------
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct Number!';
+
+    // -------- Change the background color to green with correct number --------
+    document.querySelector('body').style.backgroundColor = '#60b347';
+
+    document.querySelector('.number').style.width = '30rem';
+
+    // -------- Number is entered is too high --------
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too High!';
@@ -39,11 +49,13 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = 0;
     }
   } else if (guess < secretNumber) {
+    // -------- Number guessed is too low -------
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too Low!';
       score--;
       document.querySelector('.score').textContent = score;
     } else {
+      // -------- Exceeded number of guesses --------
       document.querySelector('.message').textContent =
         'You lose.  Please try again!';
       document.querySelector('.score').textContent = 0;
