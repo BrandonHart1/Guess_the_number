@@ -10,11 +10,10 @@
 // document.querySelector('.guess').value = 23;
 // console.log(document.querySelector('.guess').value);
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 
 // ----- showing the number instead of the question mark -----
-document.querySelector('.number').textContent = secretNumber;
 // ----- Math.trunc returns the integer part of a number by removing any fractional digits. -----
 
 // ---- Check the number entered upon click ----
@@ -31,6 +30,8 @@ document.querySelector('.check').addEventListener('click', function () {
     // -------- Correct number guessed --------
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct Number!';
+    // -------- Display the number after correct number is given --------
+    document.querySelector('.number').textContent = secretNumber;
 
     // -------- Change the background color to green with correct number --------
     document.querySelector('body').style.backgroundColor = '#60b347';
@@ -61,4 +62,22 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = 0;
     }
   }
+});
+
+// -------- Reset after "Again" is clicked --------
+document.querySelector('.again').addEventListener('click', function () {
+  score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+  document.querySelector('.message').textContent = 'Start guessing...';
+
+  document.querySelector('.score').textContent = score;
+
+  document.querySelector('.number').textContent = '?';
+
+  document.querySelector('.guess').value = '';
+
+  document.querySelector('body').style.backgroundColor = '#222';
+
+  document.querySelector('.number').style.width = '15rem';
 });
