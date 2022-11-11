@@ -12,6 +12,7 @@
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highScore = 0;
 
 // ----- showing the number instead of the question mark -----
 // ----- Math.trunc returns the integer part of a number by removing any fractional digits. -----
@@ -37,6 +38,12 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('body').style.backgroundColor = '#60b347';
 
     document.querySelector('.number').style.width = '30rem';
+
+    // -------- Show the new high score -------
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector('.highscore').textContent = highScore;
+    }
 
     // -------- Number is entered is too high --------
   } else if (guess > secretNumber) {
